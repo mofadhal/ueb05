@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Artikel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ueb05Maven</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Artikel.java</span></div><h1>Artikel.java</h1><pre class="source lang-java linenums">/**
+ *
+** Eine Klasse zur Verwaltung eines Artikels
+ *
+ * @author (Mofadhal Al-Manari und Leen Alkhadraa)
+ * @version (17.11.2020)
+ */
+public class Artikel 
+{
+    
+    public static final int MIN_BESTAND = 0 ;
+    public static final int MIN_ARTIKELNR=1000 ;
+    public static final int MAX_ARTIKELNR = 10000;
+    
+    // instance variables  attribute - replace the example below with your own
+    private int artikelNr;
+    private String art ;
+    private int bestand;
+    private double preis;
+    /**
+     * Konstruktoren: um Objekte anlegen zu können.
+     * 
+     * @param  artikelNr  --&gt; eine 4-stellige positive Zahl ist
+     * @param  art        --&gt; String, der dei Art der Artikeln beschreibt darf nicht leer sein 
+     * @param  bestand    --&gt; muss &gt;=  0 sein
+     */
+<span class="fc" id="L27">   public Artikel (int artikelNr , String art, int bestand ){</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">      if ( art == null || art.trim().isEmpty() ){</span>
+<span class="fc" id="L29">          throw new IllegalArgumentException(&quot;Art darf nicht leer sein&quot;);</span>
+      }
+<span class="pc bpc" id="L31" title="2 of 4 branches missed.">      if  (artikelNr &lt; MIN_ARTIKELNR || artikelNr &gt;= MAX_ARTIKELNR){</span>
+      //if  (artikelNr &lt; 1000 || artikelNr &gt;= 10000){
+<span class="nc" id="L33">        throw new IllegalArgumentException(&quot;ArtikelNr muss 4-stellig positiv sein&quot;);</span>
+      }  
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">      if  (bestand &lt; MIN_BESTAND){</span>
+<span class="nc" id="L36">        throw new IllegalArgumentException(&quot;Bestand muss &gt;= 0 sein&quot;);</span>
+      }
+<span class="fc" id="L38">      this.artikelNr = artikelNr; </span>
+<span class="fc" id="L39">      this.art =art;</span>
+<span class="fc" id="L40">      this.bestand = bestand;</span>
+<span class="fc" id="L41">   }</span>
+   
+<span class="fc" id="L43">   public Artikel (int artikelNr , String art, int bestand , double preis){</span>
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">      if ( art == null || art.trim().isEmpty() ){</span>
+<span class="nc" id="L45">          throw new IllegalArgumentException(&quot;Art darf nicht leer sein&quot;);</span>
+      }
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">      if  (artikelNr &lt; MIN_ARTIKELNR || artikelNr &gt;= MAX_ARTIKELNR){</span>
+      //if  (artikelNr &lt; 1000 || artikelNr &gt;= 10000){
+<span class="fc" id="L49">        throw new IllegalArgumentException(&quot;ArtikelNr muss 4-stellig positiv sein&quot;);</span>
+      }  
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">      if  (bestand &lt; MIN_BESTAND){</span>
+<span class="nc" id="L52">        throw new IllegalArgumentException(&quot;Bestand muss &gt;= 0 sein&quot;);</span>
+      }
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">      if (preis &lt;= 0){</span>
+<span class="nc" id="L55">          throw new IllegalArgumentException(&quot;Preis muss grosser als 0 sein&quot;);</span>
+      }
+<span class="fc" id="L57">      this.artikelNr = artikelNr; </span>
+<span class="fc" id="L58">      this.art =art;</span>
+<span class="fc" id="L59">      this.bestand = bestand;</span>
+<span class="fc" id="L60">      this.preis= preis;</span>
+<span class="fc" id="L61">   }</span>
+   
+   
+   /**
+     * Konstruktoren: um Objekte anlegen zu können.
+     * 
+     * @param  artikelNr  --&gt; eine 4-stellige positive Zahl ist
+     * @param  art        --&gt; String, der dei Art der Artikeln beschreibt darf nicht leer sein 
+     */
+    public Artikel (int artikelNr , String art ){
+<span class="nc" id="L71">       this( artikelNr, art, MIN_BESTAND );</span>
+<span class="nc" id="L72">    }</span>
+    
+    public Artikel (int artikelNr , String art ,double preis){
+<span class="fc" id="L75">       this( artikelNr, art, MIN_BESTAND , preis);</span>
+<span class="fc" id="L76">    }</span>
+
+    /** Warum macht ein Standardkonstruktor keinen Sinn? 
+    ** Ein Standardkonstruktor macht keinen Sinn , weil es nicht initialisiert ist   
+    */    
+
+     /***
+     * 
+     * @param diese Funktion erhöht den Bestand um eine bestimmte Menge
+     */
+   
+     public void bucheZugang (int zugang){
+<span class="fc bfc" id="L88" title="All 2 branches covered.">         if(zugang &lt; MIN_BESTAND) throw new IllegalArgumentException(&quot;zugang muss &gt;= 0 sein &quot;);</span>
+<span class="fc" id="L89">            bestand += zugang; </span>
+<span class="fc" id="L90">    }</span>
+   
+    /***
+     * @param diese Funktion vermindert den Bestand um eine bestimmte Menge
+     */
+    public void bucheAbgang (int menge) {
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if ( menge &lt; MIN_BESTAND ){</span>
+<span class="fc" id="L97">            throw new IllegalArgumentException(&quot;Menge muss &lt; 0 sein&quot;);</span>
+        }  
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if ( menge &gt; bestand){</span>
+<span class="fc" id="L100">            throw new IllegalArgumentException(&quot;Bestand ist kleiner wie die abzubuchende Menge&quot;);</span>
+        }  
+<span class="fc" id="L102">        bestand -= menge;</span>
+<span class="fc" id="L103">    }</span>
+   
+    /**
+     * eine Methode, um ein Artikel-Objekt als Zeichenkette aufzubereiten 
+     */
+    public String toString(){
+<span class="fc" id="L109">            return  &quot;ArtikelNr: &quot; + artikelNr +</span>
+                    &quot; Bezeichnung: &quot;+ art +
+                    &quot; Bestand: &quot;+bestand +
+                    &quot; Preis: &quot;+preis;
+                }
+
+    /**
+    *  Methode gibt die Artikelnummer zurück
+    * 
+    */ 
+    public int getArtikelNr(){
+<span class="fc" id="L120">        return artikelNr;</span>
+    }
+
+    /**
+     * Diese Methode gibt die Artikelart zurück 
+     */
+    public String getArt (){
+<span class="fc" id="L127">        return art;</span>
+    }
+
+     /**
+     * Diese Methode gibt den aktuellen Bestand zurück
+     */
+    public int getBestand (){
+<span class="fc" id="L134">         return bestand;</span>
+        }
+  
+     /**
+     * Art ändern 
+     * Prüfen ob Art nicht null und nicht leer ist 
+     */
+    public void setArt (String neuArt){
+<span class="pc bpc" id="L142" title="2 of 4 branches missed.">    if (neuArt == null || neuArt.isEmpty() ){</span>
+<span class="nc" id="L143">        throw new IllegalArgumentException(&quot;Art darf nicht leer sein&quot;);</span>
+
+    }else{
+<span class="fc" id="L146">             art = neuArt;</span>
+        }
+<span class="fc" id="L148">    }</span>
+
+     /**
+     * prüfen ob Bestand kleiner als 0 ist
+     */
+    public void setBestand (int neuBestand){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">    if(neuBestand &lt; MIN_BESTAND) throw new IllegalArgumentException(&quot;Bestand muss &gt;= 0 sein &quot;);</span>
+
+<span class="nc" id="L156">        bestand = neuBestand;</span>
+    
+<span class="nc" id="L158">    }</span>
+
+    public void aenderePreis(double prozent){
+    
+<span class="fc" id="L162">    }</span>
+    
+    public void aenderePreis(int preis){
+    
+<span class="fc" id="L166">    }</span>
+    
+    public double getPreis() {
+<span class="fc" id="L169">        return preis;</span>
+    }
+
+    public void setPreis(double preis) {
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (preis &lt;= 0){</span>
+<span class="fc" id="L174">            throw new IllegalArgumentException(&quot;Preis muss grosser als 0 sein&quot;);</span>
+        }
+<span class="fc" id="L176">        this.preis = preis;</span>
+<span class="fc" id="L177">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

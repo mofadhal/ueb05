@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArtikelDialog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ueb05Maven</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ArtikelDialog.java</span></div><h1>ArtikelDialog.java</h1><pre class="source lang-java linenums">
+
+
+import java.util.*;
+/**
+ * Write a description of class ArtikelTesten here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+<span class="nc" id="L11">public class ArtikelDialog</span>
+{
+    // instance variables - replace the example below with your own
+    private static final int ANLEGEN = 1;
+    private static final int ZUBUCHEN = 2;
+    private static final int ABBUCHEN = 3;
+    private static final int SET_BESTAND = 4;
+    private static final int SET_ART =5;
+    private static final int SET_PREIS =6;
+    private static final int ENDE = 0;
+    private Artikel artikel1;
+<span class="nc" id="L22">    private Scanner input = new Scanner(System.in);</span>
+     
+    /**
+     * Constructor for objects of class ArtikelTesten
+     */
+    private int einlesenFunktion(){
+<span class="nc" id="L28">          System.out.print(ANLEGEN +&quot; anlegen;\n&quot;+</span>
+                          ZUBUCHEN +&quot; zubuchen;\n&quot;+
+                          ABBUCHEN +&quot; abbuchen;\n&quot;+
+                          SET_BESTAND +&quot; set-bestand;\n&quot;+
+                          SET_ART +&quot; set-art;\n&quot;+
+                          SET_PREIS +&quot; set-preis;\n&quot;+
+                          ENDE +&quot; beenden -&gt;\n&quot;);
+<span class="nc" id="L35">           return input.nextInt();</span>
+    }
+    
+    private Artikel ArtikelAnlegenEinlesen(){
+           int artikelNr;
+           String art;
+           int bestand;
+           int menge;
+           double preis;
+<span class="nc" id="L44">           System.out.print(&quot;Artikelnummer [muss genau eine vierstellige zahl] :&quot;);</span>
+<span class="nc" id="L45">           artikelNr = input.nextInt();</span>
+<span class="nc" id="L46">           System.out.print(&quot;Art: &quot;);</span>
+<span class="nc" id="L47">           art = input.next();</span>
+<span class="nc" id="L48">           System.out.print(&quot;Bestand [muss groeßer gleich null sein]: &quot;);</span>
+<span class="nc" id="L49">           bestand = input.nextInt();</span>
+<span class="nc" id="L50">           System.out.print(&quot;Preis [muss groeßer als null sein]: &quot;);</span>
+<span class="nc" id="L51">           preis = input.nextDouble();</span>
+<span class="nc" id="L52">           artikel1 = new Artikel (artikelNr,art,bestand,preis);</span>
+<span class="nc" id="L53">           return artikel1;</span>
+    }
+    
+    private int ZubuchenEinlesen(){
+           int zumenge;
+<span class="nc" id="L58">           System.out.print(&quot;Menge: [muss groeßer gleich null sein]:&quot;);</span>
+<span class="nc" id="L59">           zumenge = input.nextInt();</span>
+      
+<span class="nc" id="L61">           return zumenge;</span>
+    }
+    
+    private int AbbuchenEinlesen(){
+           int abmenge;
+<span class="nc" id="L66">           System.out.print(&quot;Menge: [muss groeßer gleich null sein]:&quot;);</span>
+<span class="nc" id="L67">           abmenge = input.nextInt();</span>
+<span class="nc" id="L68">           return abmenge;</span>
+    }
+    
+    private String SetArtEinlesen(){
+           String art;
+<span class="nc" id="L73">           System.out.print(&quot;Art: &quot;);</span>
+<span class="nc" id="L74">           art = input.nextLine();</span>
+<span class="nc" id="L75">           return art;</span>
+    }
+    
+    private int SetBestandEinlesen(){
+           int bestand;
+<span class="nc" id="L80">           System.out.print(&quot;Bestand: &quot;);</span>
+<span class="nc" id="L81">           bestand = input.nextInt();        </span>
+<span class="nc" id="L82">           return bestand;</span>
+    }
+    
+    private double SetPreisEinlesen(){
+           double preis;
+<span class="nc" id="L87">           System.out.print(&quot;preis: &quot;);</span>
+<span class="nc" id="L88">           preis = input.nextInt();        </span>
+<span class="nc" id="L89">           return preis;</span>
+    }
+    
+    private void ausfuehrenFunktion(int funktion){
+       
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(funktion == ANLEGEN){</span>
+<span class="nc" id="L95">           artikel1 = ArtikelAnlegenEinlesen();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        }else if(funktion == ZUBUCHEN){</span>
+<span class="nc" id="L97">           artikel1.bucheZugang(ZubuchenEinlesen());</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        }else if(funktion == ABBUCHEN){</span>
+<span class="nc" id="L99">           artikel1.bucheAbgang(AbbuchenEinlesen());</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        }else if(funktion == SET_BESTAND){</span>
+<span class="nc" id="L101">           artikel1.setBestand(SetBestandEinlesen());</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        }else if(funktion == SET_ART){</span>
+<span class="nc" id="L103">          artikel1.setArt(SetArtEinlesen());</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        }else if(funktion == SET_PREIS){</span>
+<span class="nc" id="L105">          artikel1.setPreis(SetPreisEinlesen());</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        }else if(funktion == ENDE){</span>
+<span class="nc" id="L107">            System.out.println(&quot;Programmende&quot;);</span>
+        }else{
+<span class="nc" id="L109">            System.out.println(&quot;Falsche Funktion&quot;);</span>
+      }
+<span class="nc" id="L111">           System.out.println(artikel1);</span>
+
+<span class="nc" id="L113">    }</span>
+    
+    public void start(){
+<span class="nc" id="L116">         artikel1 = null;</span>
+<span class="nc" id="L117">         int funktion = -1;</span>
+    
+<span class="nc bnc" id="L119" title="All 2 branches missed.">      while(funktion != ENDE){</span>
+        try{
+<span class="nc" id="L121">            funktion = einlesenFunktion();</span>
+<span class="nc" id="L122">            ausfuehrenFunktion(funktion);</span>
+<span class="nc" id="L123">        }catch(IllegalArgumentException e){</span>
+<span class="nc" id="L124">            System.out.println(e);</span>
+<span class="nc" id="L125">        }catch(InputMismatchException e){</span>
+<span class="nc" id="L126">            System.out.println(e);</span>
+<span class="nc" id="L127">            input.nextLine();</span>
+<span class="nc" id="L128">        }catch(Exception e){</span>
+<span class="nc" id="L129">            System.out.println(&quot;Ausnahme gefangen: &quot;+e);</span>
+<span class="nc" id="L130">            e.printStackTrace(System.out);</span>
+<span class="nc" id="L131">        }</span>
+      }
+<span class="nc" id="L133">    }</span>
+   
+    public static void main (String[] args){
+<span class="nc" id="L136">    new ArtikelDialog().start();</span>
+<span class="nc" id="L137">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

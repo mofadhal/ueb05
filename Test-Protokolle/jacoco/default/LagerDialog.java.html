@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LagerDialog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ueb05Maven</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">LagerDialog.java</span></div><h1>LagerDialog.java</h1><pre class="source lang-java linenums">import java.util.InputMismatchException;
+import java.util.*;
+
+<span class="nc" id="L4">public class LagerDialog {</span>
+<span class="nc" id="L5">    private Lager lager1 = null;</span>
+<span class="nc" id="L6">    private Scanner input = new Scanner(System.in);</span>
+
+   // private static final int LEGE_AN_ARTIKEL = 1;
+    private static final int ENTFERNE_ARTIKEL = 1;
+    private static final int BUCHE_ZUGANG = 2;
+    private static final int BUCHE_ABGANG = 3;
+    private static final int AENDERE_PREIS_ALLER_ARTIKEL = 4;
+    private static final int GET_ARTIKEL = 5;
+    private static final int GET_ARTIKEL_ANZAHL = 6;
+    private static final int GET_LAGER_GROESSE = 7;
+    private static final int creat_lager = 8;
+    private static final int ENDE = 0;
+
+    private int einlesenFunktion() {
+        int funktion;
+<span class="nc" id="L21">        System.out.print(//LEGE_AN_ARTIKEL + &quot;: legeAnArtikel; &quot; +</span>
+                ENTFERNE_ARTIKEL + &quot;: entferneArtikel; &quot; +
+                BUCHE_ZUGANG + &quot;: bucheZugang; &quot; +
+                BUCHE_ABGANG + &quot;: bucheAbgang; &quot; +
+                AENDERE_PREIS_ALLER_ARTIKEL + &quot;:aenderePreisAllerArtikel; &quot; +&quot;\n&quot;+
+                GET_ARTIKEL + &quot;:getArtikel; &quot; +
+                GET_ARTIKEL_ANZAHL + &quot;:getArtikelAnzahl; &quot; +
+                GET_LAGER_GROESSE + &quot;:getLagerGroesse; &quot; +
+                creat_lager + &quot;:Creat neu lager &quot; +
+                ENDE + &quot;: beenden -&gt; &quot;);
+<span class="nc" id="L31">        funktion = input.nextInt();</span>
+<span class="nc" id="L32">        input.nextLine();</span>
+<span class="nc" id="L33">        return funktion;</span>
+
+    }
+
+    private int einleseMenge() {
+<span class="nc" id="L38">        int menge = 0;</span>
+<span class="nc" id="L39">        System.out.print(&quot;Menge: &quot;);</span>
+        try {
+<span class="nc" id="L41">            menge = input.nextInt();</span>
+<span class="nc" id="L42">        } catch (Exception e) {</span>
+<span class="nc" id="L43">            System.out.println(e.toString());</span>
+<span class="nc" id="L44">            input.nextLine();</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">        return menge;</span>
+    }
+
+    private String einleseArt() {
+        String art;
+<span class="nc" id="L51">        System.out.println(&quot;Neuer Art: &quot;);</span>
+<span class="nc" id="L52">        art = input.nextLine();</span>
+<span class="nc" id="L53">        return art;</span>
+    }
+
+    private int einleseBestand() {
+        int bestand;
+<span class="nc" id="L58">        System.out.println(&quot;Neuer Bestand: &quot;);</span>
+<span class="nc" id="L59">        bestand = input.nextInt();</span>
+<span class="nc" id="L60">        return bestand;</span>
+    }
+
+    private double einlesePreis() {
+<span class="nc" id="L64">        double preis = 0;</span>
+<span class="nc" id="L65">        System.out.println(&quot;Neuer Preis: &quot;);</span>
+        try {
+<span class="nc" id="L67">            preis = input.nextDouble();</span>
+<span class="nc" id="L68">        } catch (Exception e) {</span>
+<span class="nc" id="L69">            System.out.println(e);</span>
+<span class="nc" id="L70">            input.nextLine();</span>
+<span class="nc" id="L71">        }</span>
+<span class="nc" id="L72">        return preis;</span>
+
+    }
+
+    private void ENTFERNE_ARTIKEL_f(int artieklNr) {
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (lager1 == null) {</span>
+<span class="nc" id="L78">            System.out.println(&quot;bitte erst lege einen Lager an&quot;);</span>
+        }
+        try {
+<span class="nc" id="L81">            lager1.entferneArtikel(artieklNr);</span>
+<span class="nc" id="L82">        } catch (Exception e) {</span>
+<span class="nc" id="L83">            System.out.println(e);</span>
+<span class="nc" id="L84">        }</span>
+<span class="nc" id="L85">    }</span>
+
+    private int einlesen_artikel() {
+<span class="nc" id="L88">        System.out.println(&quot;geben Sie den artikelNr ein :\n&quot;);</span>
+<span class="nc" id="L89">        int temp = 0;</span>
+        try {
+<span class="nc" id="L91">            temp = input.nextInt();</span>
+<span class="nc" id="L92">        } catch (Exception e) {</span>
+<span class="nc" id="L93">            System.out.println(e);</span>
+<span class="nc" id="L94">            input.nextLine();</span>
+<span class="nc" id="L95">        }</span>
+<span class="nc" id="L96">        return temp;</span>
+    }
+
+    private int einlesen_index() {
+<span class="nc" id="L100">        int temp = 0;</span>
+        try {
+<span class="nc" id="L102">            temp = input.nextInt();</span>
+<span class="nc" id="L103">        } catch (Exception e) {</span>
+<span class="nc" id="L104">            System.out.println(e);</span>
+<span class="nc" id="L105">            input.nextLine();</span>
+<span class="nc" id="L106">        }</span>
+<span class="nc" id="L107">        return temp;</span>
+    }
+
+    private void ausfuehrenfunktion(int funktion) {
+       int menge;
+       int artikelNr;
+<span class="nc bnc" id="L113" title="All 10 branches missed.">       switch (funktion) {</span>
+            case ENTFERNE_ARTIKEL:
+<span class="nc" id="L115">                artikelNr = einlesen_artikel();</span>
+<span class="nc" id="L116">                ENTFERNE_ARTIKEL_f(artikelNr);</span>
+<span class="nc" id="L117">                break;</span>
+            case creat_lager:
+<span class="nc" id="L119">                System.out.println(&quot;bitte geben Sie der Groeße der lage ein: &quot;);</span>
+<span class="nc" id="L120">                artikelNr = einlesen_index();</span>
+<span class="nc" id="L121">                ENTFERNE_ARTIKEL_f(artikelNr);</span>
+<span class="nc" id="L122">                break;</span>
+
+            case BUCHE_ZUGANG:
+<span class="nc" id="L125">                artikelNr = einlesen_artikel();</span>
+<span class="nc" id="L126">                menge = einleseMenge();</span>
+<span class="nc" id="L127">                zubuch_im_lager(artikelNr, menge);</span>
+
+<span class="nc" id="L129">                break;</span>
+
+            case BUCHE_ABGANG:
+<span class="nc" id="L132">                artikelNr = einlesen_artikel();</span>
+<span class="nc" id="L133">                menge = einleseMenge();</span>
+<span class="nc" id="L134">                abbuch_im_lager(artikelNr, menge);</span>
+<span class="nc" id="L135">                break;</span>
+
+            case AENDERE_PREIS_ALLER_ARTIKEL:
+<span class="nc" id="L138">                double preis_prozent = einlesePreis();</span>
+                try {
+<span class="nc" id="L140">                    lager1.aenderePreisAllerArtikel(preis_prozent);</span>
+<span class="nc" id="L141">                } catch (Exception e) {</span>
+<span class="nc" id="L142">                    System.out.println(e);</span>
+<span class="nc" id="L143">                }</span>
+<span class="nc" id="L144">                break;</span>
+
+            case GET_ARTIKEL:
+<span class="nc" id="L147">                System.out.println(&quot;geben Sie den artikel index ein :\n&quot;);</span>
+<span class="nc" id="L148">                artikelNr = einlesen_index();</span>
+                try {
+<span class="nc" id="L150">                    lager1.getArtikel(artikelNr);</span>
+<span class="nc" id="L151">                } catch (NullPointerException e) {</span>
+<span class="nc" id="L152">                    System.out.println(&quot;bitte legen Sie erst einen Lager an&quot;);</span>
+<span class="nc" id="L153">                } catch (Exception e) {</span>
+<span class="nc" id="L154">                    System.out.println(e);</span>
+<span class="nc" id="L155">                }</span>
+<span class="nc" id="L156">                break;</span>
+
+            case GET_ARTIKEL_ANZAHL:
+                try {
+<span class="nc" id="L160">                    System.out.println(lager1.getArtikelAnzahl());</span>
+<span class="nc" id="L161">                } catch (NullPointerException e) {</span>
+<span class="nc" id="L162">                    System.out.println(&quot;bitte legen Sie erst einen Lager an&quot;);</span>
+<span class="nc" id="L163">                } catch (Exception e) {</span>
+<span class="nc" id="L164">                    System.out.println(e);</span>
+<span class="nc" id="L165">                }</span>
+<span class="nc" id="L166">                break;</span>
+
+            case GET_LAGER_GROESSE:
+                try {
+<span class="nc" id="L170">                    lager1.getLagerGroesse();</span>
+<span class="nc" id="L171">                } catch (NullPointerException e) {</span>
+<span class="nc" id="L172">                    System.out.println(&quot;bitte legen Sie erst einen Lager an&quot;);</span>
+<span class="nc" id="L173">                } catch (Exception e) {</span>
+<span class="nc" id="L174">                    System.out.println(e);</span>
+<span class="nc" id="L175">                }</span>
+<span class="nc" id="L176">                break;</span>
+                
+            /** case LEGE_AN_ARTIKEL:
+                 System.out.println(&quot;geben Sie einen artikel ein&quot;);
+                Artikel artikel = null;
+                try{
+                    artikel = nex
+                    lager1.legeAnArtikel(artikel);
+                }catch (Exception e){
+                    System.out.println(e);
+                    input.nextLine();
+                }
+                **/
+            case ENDE:
+<span class="nc" id="L190">                System.out.println(&quot;Programmende&quot;);</span>
+<span class="nc" id="L191">                break;</span>
+
+            default:
+<span class="nc" id="L194">                System.out.println(&quot;Falsche Funktion&quot;);</span>
+        }
+<span class="nc" id="L196">        System.out.println(lager1);</span>
+
+<span class="nc" id="L198">    }</span>
+
+    private void abbuch_im_lager(int artikelNr, int menge) {
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        if (lager1 == null) {</span>
+<span class="nc" id="L202">            System.out.println(&quot;bitte erst einen Lager anlegen&quot;);</span>
+<span class="nc" id="L203">            return;</span>
+        }
+        try {
+<span class="nc" id="L206">            lager1.bucheAbgang(artikelNr, menge);</span>
+<span class="nc" id="L207">        } catch (Exception e) {</span>
+<span class="nc" id="L208">            System.out.println(e);</span>
+<span class="nc" id="L209">        }</span>
+<span class="nc" id="L210">    }</span>
+
+    private void zubuch_im_lager(int artikelNr, int menge) {
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (lager1 == null) {</span>
+<span class="nc" id="L214">            System.out.println(&quot;bitte erst einen Lager anlegen&quot;);</span>
+<span class="nc" id="L215">            return;</span>
+        }
+        try {
+<span class="nc" id="L218">            lager1.bucheZugang(artikelNr, menge);</span>
+<span class="nc" id="L219">        } catch (Exception e) {</span>
+<span class="nc" id="L220">            System.out.println(e);</span>
+<span class="nc" id="L221">        }</span>
+<span class="nc" id="L222">    }</span>
+
+
+    public void start() {
+<span class="nc" id="L226">        int funktion = -1;</span>
+
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        while (funktion != ENDE) {</span>
+            try {
+<span class="nc" id="L230">                funktion = einlesenFunktion();</span>
+<span class="nc" id="L231">                ausfuehrenfunktion(funktion);</span>
+<span class="nc" id="L232">            } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L233">                System.out.println(&quot;Ausnahme gefangen:  &quot; + e);</span>
+<span class="nc" id="L234">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L235">                System.out.println(e.toString());</span>
+<span class="nc" id="L236">                input.next();</span>
+<span class="nc" id="L237">            } catch (Exception e) {</span>
+<span class="nc" id="L238">                System.out.println(&quot;Ausnahme gefangen: &quot; + e);</span>
+<span class="nc" id="L239">                e.printStackTrace(System.out);</span>
+<span class="nc" id="L240">            }</span>
+
+
+        }
+
+<span class="nc" id="L245">    }</span>
+
+
+    public static void main(String[] args) {
+<span class="nc" id="L249">        LagerDialog x = new LagerDialog();</span>
+<span class="nc" id="L250">        x.start();</span>
+<span class="nc" id="L251">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Lager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ueb05Maven</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Lager.java</span></div><h1>Lager.java</h1><pre class="source lang-java linenums">
+/**
+ *
+ ** Eine Klasse zur Verwaltung eines Artikels
+ *
+ * @author (Mofadhal Al-Manari und Leen Alkhadraa)
+ * @version (05.01.2021)
+ */
+public class  Lager
+{
+    private Artikel artikelTab [];
+    private int anzArtikel;
+
+<span class="fc" id="L14">   public Lager (int maxAnzArtikel) {</span>
+<span class="fc" id="L15">        artikelTab = new Artikel[maxAnzArtikel];</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        for (int i = 0 ; i &lt; maxAnzArtikel ; i++){</span>
+<span class="fc" id="L17">            artikelTab[i] = null;</span>
+        }
+<span class="fc" id="L19">        anzArtikel = 0;</span>
+<span class="fc" id="L20">   }</span>
+<span class="fc" id="L21">    public Lager () {</span>
+<span class="fc" id="L22">        artikelTab = new Artikel[10];</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        for (int i = 0 ; i &lt; 10 ; i++){</span>
+<span class="fc" id="L24">            artikelTab[i] = null;</span>
+        }
+<span class="fc" id="L26">        anzArtikel = 0;</span>
+<span class="fc" id="L27">   }</span>
+
+    /**
+     * Lager_Objekt als Zeichenkette aufbereiten
+     *
+     * @return Zeichenkette
+     */
+   private  int get_index_artikel (int artikelNr){
+<span class="fc bfc" id="L35" title="All 2 branches covered.">       for (int i = 0 ; i &lt; anzArtikel ; i++){</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">           if(artikelTab[i].getArtikelNr() == artikelNr){</span>
+<span class="fc" id="L37">               return i;</span>
+           }
+       }
+<span class="fc" id="L40">       return -1;</span>
+   }
+    /**
+     * Methode zum legen neuen Artikel
+     *
+     *
+     *
+     */
+   public void legeAnArtikel(Artikel artikel){
+<span class="pc bpc" id="L49" title="1 of 4 branches missed.">       if(anzArtikel &gt;= artikelTab.length || artikel == null){</span>
+<span class="fc" id="L50">           throw new IllegalAccessError(&quot;Der lager ist Voll&quot;);</span>
+       }
+<span class="fc" id="L52">       artikelTab[anzArtikel] = artikel;</span>
+<span class="fc" id="L53">       anzArtikel++;</span>
+<span class="fc" id="L54">   }</span>
+    /**
+     * Entferne eines Artikel aus dem Lager
+     *
+     * @param artikelNr zu uebergebende Artikelnummer
+     */
+   public void entferneArtikel(int artikelNr){
+<span class="fc" id="L61">       int i = get_index_artikel(artikelNr);</span>
+<span class="pc bpc" id="L62" title="2 of 6 branches missed.">    if(i &gt; anzArtikel   || i &gt;= artikelTab.length || i == -1){</span>
+<span class="fc" id="L63">        throw new IllegalAccessError(&quot;Es ist nicht verfuegbar&quot;);</span>
+    }
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    for ( ; i &lt; anzArtikel ; i++){</span>
+<span class="fc" id="L66">        artikelTab[i] = artikelTab[i+1];</span>
+    }
+<span class="fc" id="L68">    artikelTab[anzArtikel--] = null;</span>
+<span class="fc" id="L69">   }</span>
+
+    /**
+     * Zugang buchen für einen Artikel
+     *
+     * @param artikelNr   zu uebergebende Artikelnummer
+     * @param menge       zu buchende Menge &gt; 0
+     */
+   public void bucheZugang(int artikelNr, int menge){
+<span class="fc" id="L78">    int artikel_index = get_index_artikel(artikelNr);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">    if (artikel_index == -1) {</span>
+<span class="fc" id="L80">        throw new IllegalAccessError(&quot;Es ist nicht verfuegbar&quot;);</span>
+    }
+<span class="fc" id="L82">    artikelTab[artikel_index].bucheZugang(menge);</span>
+<span class="fc" id="L83">   }</span>
+
+    /**
+     * Abgang buchen für einen Artikel
+     *
+     * @param artikelNr   zu uebergebende Artikelnummer
+     * @param menge       zu buchende Menge &gt; 0
+     */
+   public void bucheAbgang(int artikelNr, int menge){
+<span class="fc" id="L92">       int artikel_index = get_index_artikel(artikelNr);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">       if (artikel_index == -1) {</span>
+<span class="fc" id="L94">           throw new IllegalAccessError(&quot;Es ist nicht verfuegbar&quot;);</span>
+       }
+<span class="fc" id="L96">       artikelTab[artikel_index].bucheAbgang(menge);</span>
+<span class="fc" id="L97">   }</span>
+
+    /**
+     * Methode zum Ermitteln eines Artikels an einer bestimmten Stelle im Lager
+     *
+     *
+     * @return  index
+     */
+   public Artikel getArtikel(int index){
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">      if (index &lt; 0 || index &gt;= anzArtikel){</span>
+<span class="fc" id="L107">          throw new IllegalAccessError(&quot;Diese Index ist nicht verfuegbar&quot;);</span>
+      }
+<span class="fc" id="L109">       return artikelTab[index];</span>
+   }
+
+    /**
+     *Preis für alle Artikel um einen bestimmten Protzentsatz verändern
+     *
+     * @param prozent
+     */
+   public void  aenderePreisAllerArtikel(double prozent){
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">       for (int i=0 ; i &lt;anzArtikel ; i++){</span>
+<span class="fc" id="L120">           double prise = artikelTab[i].getPreis();</span>
+<span class="fc" id="L121">           double neu_preis = prise + prise * prozent ;</span>
+<span class="fc" id="L122">           artikelTab[i].setPreis(neu_preis);</span>
+
+       }
+<span class="fc" id="L125">   }</span>
+   public String toString(){
+<span class="nc" id="L127">       StringBuilder temp = new StringBuilder(&quot;Grosse der Lager: &quot; + artikelTab.length +</span>
+               &quot; Anzahl der Artikel:&quot; + anzArtikel);
+<span class="nc bnc" id="L129" title="All 2 branches missed.">       for (int i = 0 ; i &lt; anzArtikel ; i++){</span>
+<span class="nc" id="L130">           temp.append(&quot;\n&quot;).append(i).append(&quot;.\t&quot;);</span>
+<span class="nc" id="L131">           temp.append(artikelTab[i].toString());</span>
+       }
+<span class="nc" id="L133">       return temp.toString();</span>
+   }
+    /**
+     * Die aktuelle Anzahl der Artikel im Lager
+     */
+   public int getArtikelAnzahl(){
+<span class="fc" id="L139">       return anzArtikel;</span>
+   }
+    /**
+     * Die Anzahl der Artikel, die ins Lager gelegte werden können
+     *
+     */
+   public int getLagerGroesse(){
+<span class="fc" id="L146">       return artikelTab.length;</span>
+   }
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
